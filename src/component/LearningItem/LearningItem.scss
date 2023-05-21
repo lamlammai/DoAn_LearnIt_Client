@@ -1,0 +1,251 @@
+.Learning-item {
+  -webkit-animation: itemsFade 1s ease backwards;
+  animation: itemsFade 1s ease backwards;
+  position: relative;
+
+  &:hover {
+    h3 {
+      color: #d4431bd8;
+    }
+  }
+
+  div {
+    overflow: hidden;
+    transition: all 0.3s;
+    margin: 0 10px;
+    border-radius: 16px;
+    position: relative;
+
+    img {
+      width: 100%;
+      border-radius: 16px;
+      height: 200px;
+      overflow: hidden;
+      transition: all 0.3s;
+      object-fit: cover;
+
+      &:hover {
+        transform: scale(1.05) translateZ(0);
+        opacity: 0.9;
+      }
+    }
+
+    .icon-pro {
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      left: 12px;
+      padding: 5px;
+      pointer-events: none;
+      position: absolute;
+      top: 12px;
+      width: 26px;
+      height: 30px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        max-width: 20px;
+        max-height: 20px;
+      }
+    }
+  }
+
+  h3 {
+    font-size: 18px;
+    line-height: 24px;
+    text-align: left;
+    font-weight: 600;
+    margin: 0;
+    margin: 10px 10px 10px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    height: 48px;
+  }
+}
+
+@-webkit-keyframes itemsFade {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(160px);
+    transform: translateY(160px);
+  }
+
+  20% {
+    opacity: 0;
+  }
+}
+
+@keyframes itemsFade {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(160px);
+    transform: translateY(160px);
+  }
+
+  20% {
+    opacity: 0;
+  }
+}
+
+.CourseItem_old-price {
+  font-size: 14px;
+  margin-right: 8px;
+  text-decoration: line-through;
+}
+
+.CourseItem_main-price {
+  color: #ea5252;
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 4px;
+}
+
+.Learning-item .popover-course {
+  border-radius: 5px;
+  position: absolute;
+  bottom: 0;
+  background: #fff;
+  width: 270px;
+  z-index: 2;
+  box-shadow: 0 5px 15px 0 rgba(133, 142, 176, 0.5);
+  height: 100%;
+  padding: 12px 14px;
+  transform: translateY(15px);
+  opacity: 0;
+  visibility: hidden;
+  transition: 300ms ease-out;
+  overflow: inherit;
+}
+
+.Learning-item:hover .popover-course {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.popover-course::after {
+  position: absolute;
+  content: "";
+  top: 50%;
+  opacity: 1;
+  left: -13px;
+  width: 0;
+  height: 0;
+  border-right: 13px solid #fff;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+}
+
+.popover-course__title {
+  font-size: 22px;
+  margin-top: 0;
+  color: #1e2a55;
+  line-height: 1.2;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+.popover-course__title:hover {
+  text-decoration: none;
+}
+
+.Learning-item .popover-course__sum {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding-bottom: 10px;
+  margin-bottom: 8px;
+  border-radius: 0;
+  border-bottom: 1px solid #dcdff1;
+}
+
+.popover-course__sum .author {
+  display: flex;
+  align-items: center;
+}
+
+.popover-course__sum .author img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.popover-course__sum .author .user-name {
+  font-size: 13px;
+  color: #4c5eff;
+  white-space: nowrap;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 125px;
+}
+
+.popover-course__sum .rate-wrap {
+  font-size: 13px;
+}
+
+.popover-course__sum .rate-wrap .avg-rate {
+  color: #202842;
+}
+
+.popover-course__sum .rate-wrap .total-rate {
+  color: #a5adba;
+}
+
+.popover-course__detail-infor {
+  list-style: none;
+  padding-left: 0;
+  padding-bottom: 10px;
+}
+
+.popover-course__detail-infor li {
+  color: #202842;
+}
+
+.popover-course__detail-infor li>p>i {
+  color: #4c5eff;
+  margin-right: 10px;
+}
+
+.popover-course__detail-infor li {
+  color: #202842;
+}
+
+.popover-course__detail-infor p {
+  margin-bottom: 4px;
+}
+
+.popover-course__detail-infor {
+  margin-bottom: 0;
+}
+
+.course-description {
+  margin-bottom: 0px;
+  color: #42526e;
+  line-height: 1.5;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  min-height: 44px;
+  max-height: 3em;
+}
+
+.slick-list {
+  padding: 10px 0;
+}
+
+.Learning-item-disable {
+  opacity: 0.7;
+}

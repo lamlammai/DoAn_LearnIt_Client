@@ -1,0 +1,99 @@
+.Home-wrapper {
+  margin-top: 23px;
+  .content-right-body {
+    p {
+      color: #82919b;
+    }
+    padding: 42px 46px;
+    margin-bottom: 60px;
+    .SectionList-wrapper {
+      padding: 0px 0 25px 0;
+      -webkit-animation: itemsFade 1s ease backwards;
+      animation: itemsFade 1s ease backwards;
+      .SectionList-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h2 {
+          margin: 0;
+          font-style: 29px;
+          font-weight: 700;
+        }
+      }
+      .Course-main {
+        width: 100%;
+        transition: all 0.5s;
+      }
+
+      .UnstudyCourses-main {
+        width: 100%;
+      }
+    }
+  }
+}
+@-webkit-keyframes itemsFade {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(160px);
+    transform: translateY(160px);
+  }
+  20% {
+    opacity: 0;
+  }
+}
+
+@keyframes itemsFade {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(160px);
+    transform: translateY(160px);
+  }
+  20% {
+    opacity: 0;
+  }
+}
+.Video-main {
+  width: 100%;
+  .Video-item {
+    animation-delay: 0.8s;
+  }
+}
+.Video-info {
+  display: flex;
+  padding: 0;
+  p {
+    margin-bottom: 10px;
+    margin-right: 20px;
+
+    i {
+      font-size: 16px;
+      color: rgb(90, 88, 88);
+    }
+  }
+}
+.Post-main {
+  animation-delay: 0.6s;
+  h3 {
+    padding: 0;
+    padding-right: 20px;
+  }
+  .Author {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    bottom: 0;
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-right: 2px;
+    }
+    p {
+      margin: 0;
+      margin-right: 10px;
+    }
+  }
+}
+.slick-track {
+  margin-left: 0;
+}

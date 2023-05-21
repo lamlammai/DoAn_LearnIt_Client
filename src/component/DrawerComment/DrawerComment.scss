@@ -1,0 +1,54 @@
+.ant-drawer-header-title {
+  justify-content: flex-end;
+}
+.ant-drawer-header {
+  padding: 21px 4px;
+}
+.ant-drawer-body {
+  padding: 0 24px 24px;
+}
+h3 {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+//thay doi
+.comment {
+  display: flex;
+  align-items: center;
+  .active {
+    margin-left: 16px;
+    /* border-radius: 50%; */
+    width: 25px;
+    height: 25px;
+    color: #ccc;
+    i {
+      position: relative;
+      &:hover {
+        ul {
+          display: block;
+          li {
+            cursor: pointer;
+
+            &:hover {
+              color: rgb(247, 85, 85);
+            }
+          }
+        }
+      }
+    }
+    ul {
+      box-shadow: -2px 3px 9px -1px #ccc;
+      position: absolute;
+      list-style: none;
+      width: 76px;
+      border-radius: 5px;
+      display: none;
+      li {
+        padding: 4px 7px;
+        color: rgb(56, 55, 55);
+        font-family: "Montserrat", "Fira Code";
+        font-weight: 400;
+      }
+    }
+  }
+}
