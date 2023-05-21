@@ -6,7 +6,13 @@ import { imgErr, logo, pro } from "../../constants/images";
 function Course(props) {
   return (
     <>
-      <div className={props?.data?.type == 2 ? "Learning-item Learning-item-disable" : "Learning-item"}>
+      <div
+        className={
+          props?.data?.type == 2
+            ? "Learning-item Learning-item-disable"
+            : "Learning-item"
+        }
+      >
         <Link to={props?.data?.type == 2 ? "#" : `/course/${props?.data?.id}`}>
           <div className="img-item">
             <img
@@ -29,7 +35,10 @@ function Course(props) {
         </Link>
         {props?.data?.type == 1 && (
           <div class="price">
-            <i class="fas fa-donate" style={{ color: "#ea5252", fontSize: '18px' }}></i>
+            <i
+              class="fas fa-donate"
+              style={{ color: "#ea5252", fontSize: "18px" }}
+            ></i>
             {props?.data?.price_old && (
               <span class="CourseItem_old-price">
                 {props?.data?.price_old} xu
@@ -70,11 +79,6 @@ function Course(props) {
                 <p>
                   <i class="far fa-clock"></i> Tổng số bài học:
                   <strong>24 bài</strong>
-                </p>
-              </li>
-              <li>
-                <p>
-                  <i class="fas fa-award"></i> Chứng chỉ hoàn thành khóa học
                 </p>
               </li>
             </ul>

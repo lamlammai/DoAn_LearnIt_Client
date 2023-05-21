@@ -29,9 +29,6 @@ function HomePage() {
       setcomingsoon(res.returnValue.data?.filter((item) => item.type == 2));
       setcourseNormal(res.returnValue.data?.filter((item) => item.type == 0));
       setcourseVip(res.returnValue.data?.filter((item) => item.type == 1));
-      setcourseSuitable(
-        res.returnValue.data?.filter((item) => item.path == "FRONTEND")
-      );
     } else {
       message.error("Vui lòng thử lại sau!");
     }
@@ -46,9 +43,20 @@ function HomePage() {
       }
     }
   };
+  const userPrefer = async () => {
+    if (Token) {
+      const res = await sendGet("/courses/prefer");
+      if (res.statusCode === 200) {
+        setcourseSuitable(res.returnValue.data);
+      } else {
+        message.error("Vui lòng thử lại sau!");
+      }
+    }
+  };
   useEffect(() => {
     listCourse();
     userCourse();
+    userPrefer();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
@@ -96,7 +104,7 @@ function HomePage() {
                 </div>
               </div>
               {/* khóa phù hợp với bạn */}
-              {Token && (
+              {Token && courseSuitable && (
                 <div className="SectionList-wrapper">
                   <div className="SectionList-title">
                     <h2>Khóa học phù hợp với bạn</h2>

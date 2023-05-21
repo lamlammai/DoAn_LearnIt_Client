@@ -67,15 +67,6 @@ function BlogItem({ item }) {
               <ul>
                 <li>
                   <a
-                    href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:3000/learn/reactjs4"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <i class="fab fa-facebook-f"></i>Chia sẻ lên FaceBook
-                  </a>
-                </li>
-                <li>
-                  <a
                     href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to&su=Tiêu đề &body=http://localhost:3000/learn/reactjs4"
                     target="_blank"
                     rel="noreferrer"

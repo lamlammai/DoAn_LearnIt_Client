@@ -7,6 +7,7 @@ import "./DrawerComment.scss";
 import { sendDelete, sendGet, sendPut } from "../../utils/api";
 import { useParams } from "react-router-dom";
 import { avt, haha, like } from "../../constants/images";
+import { getItem } from "../../utils/storage";
 const DrawerComment = (props) => {
   const [visible, setVisible] = useState(false);
   const [data, setData] = useState();
@@ -16,6 +17,8 @@ const DrawerComment = (props) => {
   const [count, setCount] = useState(0);
   const [content, setContent] = useState();
   const params = useParams();
+  const user = getItem("user") ? JSON.parse(getItem("user")) : {};
+
   const showDrawer = () => {
     setVisible(true);
   };
@@ -58,12 +61,18 @@ const DrawerComment = (props) => {
   const handleEdit = async (key, value) => {
     const res = await sendPut(`/comments`, { content: value, commentId: key });
     try {
-      if (res.status === 200) {
+      if (res.statusCode === 200) {
         await listComment();
         setHidden(!hidden);
       }
     } catch (error) {}
   };
+  useEffect(() => {}, []);
+  const formatterDate = new Intl.DateTimeFormat("vi-VN", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
   useEffect(() => {
     listComment();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -94,37 +103,44 @@ const DrawerComment = (props) => {
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
                       ></input>
-                      <button onClick={() => handleEdit(item?.id, content)}>
-                        Gửi
-                      </button>
+                      <a onClick={() => handleEdit(item?.id, content)}>
+                        <i class="fas fa-paper-plane"></i>
+                      </a>
+                      {/* <button onClick={() => handleEdit(item?.id, content)}>
+Gửi
+</button> */}
                     </div>
                   ) : null}
-                  <div>
-                    <img src={like} alt="react" />
-                    <img src={haha} alt="react" />
-                    <span>{count}</span>
-                  </div>
                 </div>
                 <div className="comment-react">
                   <ReactCmt parentCallback={ReactCMT} />
                   <span onClick={handleClick}>Bình luận</span>
-                  <span className="time">{item?.createdAt}</span>
+                  <div className="total-react">
+                    <img src={like} alt="react" />
+                    <img src={haha} alt="react" />
+                    <span>{count}</span>
+                  </div>
+                  <span className="time">
+                    {formatterDate.format(Date.parse(item?.createdAt))}
+                  </span>
                 </div>
               </div>
             </div>
-            <div className="active">
-              <i className="fas fa-ellipsis-h">
-                <ul>
-                  <li onClick={() => deleteComment(item?.id)}>Xóa</li>
-                  <li
-                    onClick={() => showEditCmt(item?.id, item?.content)}
-                    key={item?.id}
-                  >
-                    Sửa
-                  </li>
-                </ul>
-              </i>
-            </div>
+            {item?.user?.id == user.data?.id ? (
+              <div className="active">
+                <i className="fas fa-ellipsis-h">
+                  <ul>
+                    <li onClick={() => deleteComment(item?.id)}>Xóa</li>
+                    <li
+                      onClick={() => showEditCmt(item?.id, item?.content)}
+                      key={item?.id}
+                    >
+                      Sửa
+                    </li>
+                  </ul>
+                </i>
+              </div>
+            ) : null}
           </div>
         ))}
       </Drawer>
