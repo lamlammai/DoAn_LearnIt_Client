@@ -23,13 +23,23 @@ export default function Exercise(props) {
   function handleEditorDidMount(editor, monaco) {
     editorRef.current = editor;
   }
+  function removeComments(code) {
+    // Remove single-line comments
+
+    code = code.replace(/\/\/.*/g, "");
+
+    // Remove multi-line comments
+    code = code.replace(/\/\*[\s\S]*?\*\//g, "");
+
+    return code;
+  }
   async function showValue() {
     const res = await sendPost(`/exercises/do-exercise`, {
       exerciseId: parseInt(params.id),
-      answer: editorRef.current?.getValue(),
+      answer: removeComments(editorRef.current?.getValue()),
     });
     let check = res.returnValue.data.filter((e) => {
-      return e.status == 0
+      return e.status == 0;
     });
     if (res.statusCode === 400) {
       message.error(res.message);
@@ -37,9 +47,8 @@ export default function Exercise(props) {
     }
     if (check.length > 0) {
       setResult(res.returnValue.data);
-      message.success("Có lỗi trong quá trình thực hiện");
-    }
-    else {
+      message.error("Có lỗi trong quá trình thực hiện");
+    } else {
       message.success("Bạn đã giải đúng.");
       setResult(res.returnValue.data);
       // setTimeout(() => history.goBack(), 5000);
@@ -52,7 +61,7 @@ export default function Exercise(props) {
         setTemp(DATA.C_BASIC);
       } else if (lang.returnValue.data?.course?.language === "java") {
         setTemp(DATA.JAVA_BASIC);
-      } else if (lang.returnValue.data?.course?.language === "python") {
+      } else if (lang.returnValue.data?.course?.language === "python3") {
         setTemp(DATA.PYTHON_BASIC);
       } else setTemp("function resolve(){\n//Viet code o day nhe\n\n}");
     }

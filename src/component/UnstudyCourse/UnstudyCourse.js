@@ -25,7 +25,9 @@ function UnstudyCourses(props) {
         </Link>
         <p>
           <i class="fas fa-users"></i>
-          <span>{props.data.userLearning ? props.data.userLearning : 0}</span>
+          <span>
+            {props.data.numberOfMember ? props.data.numberOfMember : 0}
+          </span>
         </p>
         <div
           className="popover-course arrow-left"
@@ -51,18 +53,21 @@ function UnstudyCourses(props) {
             </li>
             <li>
               <p>
-                <i class="far fa-user"></i> 19791 thành viên
+                <i class="far fa-user"></i>{" "}
+                {props.data.numberOfMember ? props.data.numberOfMember : 0}{" "}
+                thành viên
               </p>
             </li>
             <li>
               <p>
-                <i class="far fa-clock"></i> Tổng số bài học:
-                <strong>24 bài</strong>
-              </p>
-            </li>
-            <li>
-              <p>
-                <i class="fas fa-award"></i> Chứng chỉ hoàn thành khóa học
+                <i class="far fa-clock"></i> Trình độ:
+                <strong>
+                  {props.data.level == 0
+                    ? "CƠ BẢN"
+                    : props.data.level == 1
+                    ? "KHÁ"
+                    : "NÂNG CAO"}
+                </strong>
               </p>
             </li>
           </ul>

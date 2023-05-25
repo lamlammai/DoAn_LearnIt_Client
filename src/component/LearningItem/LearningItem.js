@@ -72,13 +72,21 @@ function Course(props) {
               </li>
               <li>
                 <p>
-                  <i class="far fa-user"></i> 19791 thành viên
+                  <i class="far fa-user"></i>{" "}
+                  {props.data.numberOfMember ? props.data.numberOfMember : 0}{" "}
+                  thành viên
                 </p>
               </li>
               <li>
                 <p>
-                  <i class="far fa-clock"></i> Tổng số bài học:
-                  <strong>24 bài</strong>
+                  <i class="far fa-clock"></i> Trình độ:
+                  <strong>
+                    {props.data.level == 0
+                      ? "CƠ BẢN"
+                      : props.data.level == 1
+                      ? "KHÁ"
+                      : "NÂNG CAO"}
+                  </strong>
                 </p>
               </li>
             </ul>
