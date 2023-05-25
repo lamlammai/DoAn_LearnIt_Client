@@ -25,7 +25,7 @@ export { default as imgtele1 } from "../assets/images/img-tele-1.png";
 export { default as imgtele2 } from "../assets/images/img-tele-2.png";
 export { default as imgtele3 } from "../assets/images/img-tele-3.png";
 export { default as imgtele4 } from "../assets/images/img-tele-4.png";
-export { default as tick } from "../assets/images/img-tele-4.png";
+export { default as tick } from "../assets/images/Flat_tick_icon.svg";
 export { default as pro } from "../assets/images/pro.svg";
 export { default as mapmobile } from "../assets/images/mapmobile.png";
 export { default as user } from "../assets/images/personal-18px.svg";

@@ -1,56 +1,95 @@
-import { message } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { sendGet } from "../../utils/api";
+import { sendGet, sendPost, sendPut } from "../../utils/api";
 import { logo, tick } from "../../constants/images";
-import PageError from "../NotFround/PageError";
+import "../SignIn/Component/FormSignin/FormSignin.scss";
+import { Form, Input, Button, message } from "antd";
+
 function ActiveUser() {
   const params = useParams();
-  const [active, setActive] = useState(false);
-  const Active = async () => {
-    const res = await sendGet(`/api/auth/active/${params.token}`);
-    if (res.status === 200) {
-      setActive(true);
-    } else message.error("Đường dẫn không tồn tại");
+  const [active, setActive] = useState(true);
+  const onFinish = async (values) => {
+    try {
+      const res = await sendPut(`auth/active-user/${params.token}`, values);
+      if (res.statusCode === 200) {
+        setActive(!active);
+      } else {
+        message.error("Không tìm thấy thông tin tài khoản");
+      }
+    } catch (error) {
+      message.error("Không tìm thấy thông tin tài khoản");
+    }
+  };
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
   };
   useEffect(() => {
-    Active();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>
-      {active ? (
-        <div className="Active-wrapper">
-          <div
-            className="logo"
+      <div className="Active-wrapper">
+        <div
+          className="logo"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            paddingTop: "10px",
+          }}
+        >
+          <img
+            alt="logo"
+            src={logo}
             style={{
+              width: "195px",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               paddingTop: "10px",
             }}
+          />
+          <p
+            style={{
+              fontSize: "19px",
+              fontWeight: "500",
+              letterSpacing: "4px",
+            }}
           >
-            <img
-              alt="logo"
-              src={logo}
-              style={{
-                width: "195px",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                paddingTop: "10px",
-              }}
-            />
-            <p
-              style={{
-                fontSize: "19px",
-                fontWeight: "500",
-                letterSpacing: "4px",
-              }}
+            Học lập trình để đi làm
+          </p>
+        </div>
+        {active ? (
+          <div className="Form-wrapper">
+            <Form
+              onFinish={onFinish}
+              onFinishFailed={onFinishFailed}
+              autoComplete="off"
             >
-              Học lập trình để đi làm
-            </p>
+              <Form.Item
+                name="email"
+                label="E-mail"
+                hasFeedback
+                rules={[
+                  {
+                    validateStatus: "error",
+                    type: "email",
+                    message: "Email không hợp lệ!",
+                  },
+                  {
+                    validateStatus: "error",
+                    required: true,
+                    message: "Email không được để trống!",
+                  },
+                ]}
+              >
+                <Input placeholder="Nhập email của bạn" />
+              </Form.Item>
+
+              <Button htmlType="submit">Active Tài khoản</Button>
+            </Form>
           </div>
+        ) : (
           <div
             className="active"
             style={{
@@ -74,12 +113,8 @@ function ActiveUser() {
               </Link>{" "}
             </h4>
           </div>
-        </div>
-      ) : (
-        <>
-          <PageError />
-        </>
-      )}
+        )}
+      </div>
     </>
   );
 }

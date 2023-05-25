@@ -193,11 +193,7 @@ const RoutePage = [
     component: resetPassword,
     // authen: true,
   },
-  {
-    path: ROUTES.ACTIVE,
-    exact: true,
-    component: ActiveUser,
-  },
+
   {
     path: ROUTES.SEARCH,
     exact: true,
@@ -208,6 +204,11 @@ const RoutePage = [
     exact: true,
     component: EditPost,
     authen: true,
+  },
+  {
+    path: ROUTES.ACTIVE,
+    exact: true,
+    component: ActiveUser,
   },
   {
     path: ROUTES.ERROR,
