@@ -39,3 +39,4 @@ export { default as route3 } from "../assets/images/route3.jpeg";
 export { default as route2 } from "../assets/images/route2.png";
 export { default as form2 } from "../assets/images/form2.jpg";
 export { default as form1 } from "../assets/images/form1.jpg";
+export { default as camera } from "../assets/images/camera.png";

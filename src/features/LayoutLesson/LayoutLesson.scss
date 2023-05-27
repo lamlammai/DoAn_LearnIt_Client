@@ -312,7 +312,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    margin-left: 11px;
     p {
       margin: 0;
 
@@ -321,7 +321,12 @@
         font-weight: 600;
       }
     }
-
+    p.process-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 20px;
+      color: #68696a;
+    }
     span {
       font-size: 20px;
       margin: 0px 14px;
@@ -340,16 +345,16 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        background-color: #fcdcd3;
+        background-color: #fff;
         border-bottom: 1px solid #f0eeee;
         &:hover {
-          background-color: #fcd7cc;
+          background-color: rgba(240, 81, 35, 0.2);
         }
       }
 
       .lesson-main-hidden {
         cursor: not-allowed;
-        background-color: #e7e7e7;
+        background-color: #f7f8fa;
         opacity: 0.6;
         pointer-events: none;
         border-bottom: 1px solid #f0eeee;
@@ -360,7 +365,9 @@
           color: #00000099 !important;
         }
       }
-
+      .lesson-main-active {
+        background-color: rgba(240, 81, 35, 0.2);
+      }
       .lesson-time,
       .lesson-name {
         padding: 2px 5px 0px 10px;
@@ -368,9 +375,21 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        i {
+        i.fa-check {
+          font-size: 7px;
           margin-right: 10px;
-          color: rgb(72, 192, 72);
+          color: #fff;
+          background-color: #48c048;
+          padding: 4px;
+          border-radius: 50%;
+        }
+        i.fa-lock {
+          font-size: 13px;
+          margin-right: 10px;
+          color: #fff;
+          background-color: #e0e0e0;
+          padding: 4px;
+          border-radius: 50%;
         }
       }
 
@@ -436,7 +455,7 @@
 
         p {
           margin: auto 10px;
-          background-color: #ffffff;
+          background-color: #efefef;
           width: 25px;
           height: 25px;
           color: #fff;

@@ -326,7 +326,7 @@ function LayoutLesson() {
           <section className={classNames("container-right", { zoom: zoom })}>
             <div className="process">
               <div>
-                <p>{name}</p>
+                <p className="process-title">{name}</p>
                 <p>
                   Hoàn thành {count}/{data?.lessons?.length} bài học
                 </p>
@@ -385,9 +385,12 @@ const LessonItem = ({ data, currentLesson }) => {
           <>
             <div
               className={
-                currentLesson?.currentLesson >= data.id
-                  ? "lesson-main "
-                  : "lesson-main-hidden"
+                currentLesson?.currentLesson >= data.id && params.id == data.id
+                  ? "lesson-main lesson-main-active"
+                  : currentLesson?.currentLesson >= data.id &&
+                    params.id != data.id
+                  ? "lesson-main"
+                  : " lesson-main  lesson-main-hidden"
               }
             >
               <div className="lesson-name">
