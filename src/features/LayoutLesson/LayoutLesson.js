@@ -104,6 +104,8 @@ function LayoutLesson() {
   const [timePlaying, setTimePlaying] = React.useState(0);
   const [showDialog, setShowDialog] = React.useState(false);
   const videoPlayerRef = React.useRef(null);
+  const [displayVideo, setDisplayVideo] = React.useState(false);
+
   const onChange = (e) => {
     if (e.target.currentTime - timeCurrent > 10) {
       setShowDialog(true);
@@ -128,6 +130,22 @@ function LayoutLesson() {
       message.error("Vui lòng thử lại sau");
     }
   };
+
+  useEffect(() => {
+    //tạo state để set thời gian render ra video
+    setTimeout(() => {
+      setDisplayVideo(true);
+    }, [900]);
+
+    //tạo thời gian ngay sau khi render video
+    //tạo event onContext menu để ngăn chặn không cho người dùng sử dụng right click để copy
+    setTimeout(() => {
+      document
+        ?.querySelector("video")
+        ?.setAttribute("oncontextmenu", "return false;");
+    }, [1000]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [window && window]);
   useEffect(() => {
     getInfoLesson();
     getAllLesson();
@@ -160,17 +178,21 @@ function LayoutLesson() {
                 onClick={() => PreLesson()}
                 hidden={params.id == data?.lessons[0]?.id ? true : false}
               ></i>
-              <video
-                id="playerOne"
-                onLoadedData={onLoadVideo}
-                ref={videoPlayerRef}
-                onCanPlay={onChange}
-                class="video-js vjs-default-skin"
-                src={dataVideo}
-                controls="controls"
-                width="80%"
-                crossOrigin="anonymous"
-              ></video>
+              {displayVideo && (
+                <video
+                  id="playerOne"
+                  onLoadedData={onLoadVideo}
+                  ref={videoPlayerRef}
+                  onCanPlay={onChange}
+                  class="video-js vjs-default-skin"
+                  src={dataVideo}
+                  controls="controls"
+                  controlsList="nodownload"
+                  width="80%"
+                  crossOrigin="anonymous"
+                ></video>
+              )}
+
               <i
                 className="fas fa-chevron-right"
                 onClick={() => NextLesson()}
