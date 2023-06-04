@@ -34,7 +34,7 @@ export default function BlogTopic() {
   useEffect(() => {
     listBlog();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [params.id]);
   console.log(`data`, data);
   // if (!Object.keys(data).length)
   //   return (
@@ -48,12 +48,17 @@ export default function BlogTopic() {
         <div className="StudyRoute-wrapper">
           <section className="Main-row">
             <div className="Main-left">
-              <p>Danh sách các bài viết khác</p>
+              <p className="blog-topic-title">
+                Danh sách các bài viết theo chủ đề {params.id}
+              </p>
               <div className="Blog-wrapper">
-                {data &&
+                {data && data.length > 0 ? (
                   data?.map((item, index) => (
                     <BlogItemTopic item={item} key={index} />
-                  ))}
+                  ))
+                ) : (
+                  <p>Chưa có bài viết về chủ đề này</p>
+                )}
               </div>
             </div>
             <div className="Main-right">

@@ -1,5 +1,9 @@
 .LayoutLesson-wrapper {
   // header
+  .complete-name {
+    font-size: 15px !important;
+    line-height: 25px !important;
+  }
   header {
     display: flex;
     justify-content: space-between;
@@ -620,4 +624,22 @@
     margin-top: 3px;
     padding: 16px;
   }
+}
+.modal-warning .ant-modal-title {
+  color: rgb(78 78 78 / 85%);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+}
+.modal-warning .Dialog_content {
+  font-size: 15px;
+  line-height: 24px;
+}
+.modal-warning .Dialog_confirm-button {
+  width: 50%;
+  margin: auto;
+  margin-top: 30px;
+}
+.modal-warning .ant-modal-body {
+  text-align: center;
 }

@@ -20,7 +20,7 @@ function UnstudyCourses(props) {
             />
           </div>
         </Link>
-        <Link to={`/course${props?.data?.id}`}>
+        <Link to={`/course/${props?.data?.id}`}>
           <h3>{props?.data?.name}</h3>
         </Link>
         <p>

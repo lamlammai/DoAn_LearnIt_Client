@@ -72,12 +72,12 @@ export default function Product() {
                 </div>
               </div>
               <div className="Blog-action">
-                <i
+                {/* <i
                   className={classNames("fas fa-bookmark", {
                     bgColor: bgColor,
                   })}
                   onClick={handleState}
-                ></i>
+                ></i> */}
                 <i className="fas fa-ellipsis-h"></i>
               </div>
             </div>

@@ -5,7 +5,6 @@
     justify-content: space-between;
     .Main-left {
       width: 53%;
-
       padding: 30px 0 60px 0;
       h1 {
         font-size: 28px;
@@ -17,6 +16,13 @@
         i {
           margin-right: 7px;
         }
+      }
+      .blog-topic-title {
+        font-size: 19px;
+        font-weight: 600;
+        margin-top: 20px;
+        text-transform: uppercase;
+        color: #656565;
       }
       .Main-left-body {
         width: 100%;

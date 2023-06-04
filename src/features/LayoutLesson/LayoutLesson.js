@@ -18,9 +18,8 @@ function LayoutLesson() {
   const [name, setName] = useState("Học lập trình cùng LearIT");
   // eslint-disable-next-line no-unused-vars
   const [copied, setCopied] = useState(false);
-  const [count, setCount] = useState(1);
   const [active, setActive] = useState(false);
-  const [complete, setComplete] = useState([]);
+  const [complete, setComplete] = useState(0);
   const [note, setNote] = useState("");
   const [showNote, setShowNote] = useState(false);
   const [nextLesson, setNextLesson] = useState();
@@ -58,8 +57,14 @@ function LayoutLesson() {
     });
     if (res.statusCode === 200) {
       setData(res?.returnValue?.data);
-      // setCount(res?.count);
-      // setComplete(res?.complete);
+      for (let i = 0; i < res?.returnValue?.data?.lessons.length; i++) {
+        if (
+          res?.returnValue?.data?.currentLesson?.currentLesson ==
+          res?.returnValue?.data?.lessons[i]?.id
+        ) {
+          setComplete(i + 1);
+        }
+      }
     } else message.error("Thử lại sau.");
   };
   const NextLesson = async (e) => {
@@ -183,6 +188,7 @@ function LayoutLesson() {
                   id="playerOne"
                   onLoadedData={onLoadVideo}
                   ref={videoPlayerRef}
+                  autoPlay={true}
                   onCanPlay={onChange}
                   class="video-js vjs-default-skin"
                   src={dataVideo}
@@ -349,8 +355,12 @@ function LayoutLesson() {
             <div className="process">
               <div>
                 <p className="process-title">{name}</p>
-                <p>
-                  Hoàn thành {count}/{data?.lessons?.length} bài học
+                <p className="complete-name">
+                  Hoàn thành{" "}
+                  <strong>
+                    {complete}/{data?.lessons?.length}{" "}
+                  </strong>{" "}
+                  bài học
                 </p>
               </div>
               <MenuUnfoldOutlined onClick={handleZoom} />
@@ -374,6 +384,7 @@ function LayoutLesson() {
           visible={showDialog}
           footer={null}
           centered
+          className="modal-warning"
           onCancel={() => handleTimePlaying()}
         >
           <div class="Dialog_content">

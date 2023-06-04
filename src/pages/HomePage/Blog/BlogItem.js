@@ -57,12 +57,12 @@ function BlogItem({ item }) {
             </span>
           </div>
           <div className="Blog-action">
-            <i
+            {/* <i
               className={
                 active ? "fas fa-bookmark bgColor" : "fas fa-bookmark "
               }
               onClick={() => Savepost(item?.id)}
-            ></i>
+            ></i> */}
             <i className="fas fa-ellipsis-h">
               <ul>
                 <li>

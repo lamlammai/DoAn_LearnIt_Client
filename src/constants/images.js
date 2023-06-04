@@ -40,3 +40,6 @@ export { default as route2 } from "../assets/images/route2.png";
 export { default as form2 } from "../assets/images/form2.jpg";
 export { default as form1 } from "../assets/images/form1.jpg";
 export { default as camera } from "../assets/images/camera.png";
+export { default as bg1 } from "../assets/images/bg1.png";
+export { default as bg2 } from "../assets/images/bg2.png";
+export { default as bg3 } from "../assets/images/bg3.png";

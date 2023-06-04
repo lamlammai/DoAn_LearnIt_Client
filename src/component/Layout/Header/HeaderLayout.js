@@ -12,8 +12,7 @@ function HeaderLayout(navClassList) {
   const history = useHistory();
   const { t, i18n } = useTranslation();
   const Token = localStorage.getItem("accessToken");
-  const value = localStorage.getItem("i18nextLng");
-  const [Language, setLanguage] = useState(value || "vn");
+  const [Language, setLanguage] = useState("vn");
   const [keyword, setKeyword] = useState("");
   const [course, setCourse] = useState([]);
   const [blog, setBlog] = useState([]);

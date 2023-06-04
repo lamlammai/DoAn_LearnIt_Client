@@ -3,42 +3,39 @@ import Slider from "react-animated-slider";
 import "react-animated-slider/build/horizontal.css";
 import { Link } from "react-router-dom";
 import "./Carousel.scss";
+import { bg1, bg2, bg3, logo } from "../../constants/images";
 
 const carousel = [
   {
-    title: "Học ReactJS Miễn phí!",
+    title: "Lập trình hướng đối tượng trong C++",
     description:
-      "Khóa học ReactJS từ cơ bản tới nâng cao. Kết quả của khóa học này là bạn có thể làm hầu hết các dự án thường gặp với ReactJS.",
+      "Object-Oriented-Programming (Object-Oriented-Programming) là một phương pháp lập trình dựa trên đối tượng để tìm ra bản chất của vấn đề. Khóa học này giúp các lập trình viên học các kỹ thuật lập trình mà tất cả các yêu",
     button: "Học ngay",
-    link: "/course/reactjs",
-    image: "https://i.imgur.com/IDdvBYo.png",
+    link: "/course/1",
+    image: bg2,
     user: "Admin",
-    userProfile:
-      "https://tocnamdep.com/wp-content/uploads/2020/06/toc-chi-dan-13.jpg",
+    userProfile: logo,
   },
   {
-    title: "HTML, CSS từ Zero đến Hero",
-    description:
-      "Xây dựng được ứng dụng web hoàn chỉnh sử dụng các công nghệ HTML5, CSS3, các CSS Framework, bootstrap framework",
+    title: "Kiến thức cơ bản về Python",
+    description: "Kiến thức cơ bản về Python",
     button: "Học ngay",
 
-    link: "/course/html-zero-hero",
-    image: "https://i.imgur.com/KbWWfOp.png",
+    link: "/course/5",
+    image: bg1,
     user: "Admin",
-    userProfile:
-      "https://tocnamdep.com/wp-content/uploads/2020/06/toc-chi-dan-13.jpg",
+    userProfile: logo,
   },
   {
-    title: "JavaScript cơ bản và nâng cao",
+    title: "Kiến thức cơ bản về JavaScript",
     description:
-      "JavaScript được sử dụng chủ yếu để nâng cao sự tương tác của người dùng với trang web. Nói cách khác, bạn có thể làm trang web của mình trở nên sinh động và tương tác hơn",
+      "Giúp lập trình viên nâng cao kỹ năng lập trình với các thuật toán mạnh mẽ để giải quyết các vấn đề lập trình phức tạp.",
     button: "Học ngay",
 
-    link: "/course/javascript-nang-cao",
-    image: "https://i.imgur.com/bBAy3t7.png",
+    link: "/course/7",
+    image: bg3,
     user: "Admin",
-    userProfile:
-      "https://tocnamdep.com/wp-content/uploads/2020/06/toc-chi-dan-13.jpg",
+    userProfile: logo,
   },
   {
     title: "Thành quả của Học viên",
@@ -48,8 +45,7 @@ const carousel = [
     link: "/blog/san-pham-cua-hoc-vien",
     image: "https://i.imgur.com/bGog30Z.png",
     user: "Học viên",
-    userProfile:
-      "https://tocnamdep.com/wp-content/uploads/2020/06/toc-chi-dan-13.jpg",
+    userProfile: logo,
   },
 ];
 

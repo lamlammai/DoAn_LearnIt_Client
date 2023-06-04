@@ -8,7 +8,7 @@ const StudyRoutes = [
   {
     link: "/nhap-mon",
     img: route1,
-    name: "Bắt đầu",
+    name: "BASIC",
     sub_name:
       "Trước tiên, chúng ta sẽ tìm hiểu về phương pháp học lập trình, kỹ năng đặt mục tiêu và các khái niệm kỹ thuật như: domain, client, server.",
   },
@@ -31,7 +31,13 @@ const StudyRoutes = [
     img: route2,
     name: "Mobile App",
     sub_name:
-      "Chương trình “Mobile App Development with React Native” giúp học viên làm chủ công nghệ phát triển ứng dụng mobile trên iOS & Android, xây dựng được các ứng dụng hoàn thiện bằng React Native. Cùng với đó, khóa học này còn giúp học viên biết cách để mở rộng năng lực thông qua việc học công nghệ mới. Hoàn thành khóa học học viên có ĐỦ NĂNG LỰC CỦA MỘT LẬP TRÌNH VIÊN MOBILE CHUYÊN NGHIỆP, có thể tham gia trực tiếp vào các dự án phần mềm tại doanh nghiệp hoặc tự mình xây dựng các ứng dụng phục vụ cho các mục đích khác nhau.",
+      "Lập trình viên mobile là thuật ngữ dùng để chỉ các bạn chuyên về phát triển các ứng dụng dành cho di động (smartphone) bằng cách sử dụng các ngôn ngữ lập trình như Java, Kotlin, Objective-C, Swift, JavaScript,",
+  },
+  {
+    link: "/other",
+    img: route1,
+    name: "Lộ trình khác",
+    sub_name: "Các khóa học khác trên hệ thống",
   },
 ];
 function StudyRoute() {

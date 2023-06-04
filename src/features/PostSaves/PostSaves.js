@@ -7,6 +7,11 @@ import { sendDelete, sendGet } from "../../utils/api";
 
 const { TabPane } = Tabs;
 function PostSaves() {
+  const formatterDate = new Intl.DateTimeFormat("vi-VN", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
   const [save, setSave] = useState([]);
   // const [name, setName] = useState([]);
   const Savepost = async () => {
@@ -43,15 +48,19 @@ function PostSaves() {
                     <li key={index}>
                       <h3>{item?.title}</h3>
                       <p>
-                        <span>{item?.createdAt}</span> <strong>.</strong>Tác
-                        giả:
+                        <span>
+                          {formatterDate.format(Date.parse(item?.createdAt))}
+                        </span>{" "}
+                        <strong>.</strong>Tác giả:
                         <span className="author-name">
                           {item?.author?.username}
                         </span>
                         <i class="fas fa-ellipsis-h">
                           <ul>
                             <li onClick={() => handleDelete(item.id)}>Xóa</li>
-                            <Link to={`/edit-post/${item.id}`}> Sửa</Link>
+                            <li>
+                              <Link to={`/edit-post/${item.id}`}> Sửa</Link>
+                            </li>
                           </ul>
                         </i>
                       </p>
@@ -69,8 +78,8 @@ function PostSaves() {
                 </>
               )}
             </TabPane>
-            <TabPane tab="Đã lưu" key="2">
-              {/* <ul>
+            {/* <TabPane tab="Đã lưu" key="2">
+              <ul>
                 {result.map((item) => (
                   <>
                     <li>
@@ -88,13 +97,13 @@ function PostSaves() {
                     </li>
                   </>
                 ))}
-              </ul> */}
+              </ul>
               <p>Chưa lưu bài viết nào.</p>
               <p>
                 Bạn có thể <Link to="#">viết bài mới</Link> hoặc{" "}
                 <Link to="#">đọc bài viết</Link> khác trên LEARNIT nhé.
               </p>
-            </TabPane>
+            </TabPane> */}
           </Tabs>
         </div>
       </div>

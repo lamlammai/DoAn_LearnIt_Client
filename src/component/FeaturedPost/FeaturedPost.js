@@ -39,9 +39,9 @@ function Posts() {
         </div>
         <div className=" Post-main">
           <Slider {...settings}>
-            {data.slice(0, 4)?.map((item) => (
-              <div className="Post-item Learning-item">
-                <Link to={item?.id}>
+            {data.slice(0, 4)?.map((item, index) => (
+              <div className="Post-item Learning-item" key={index}>
+                <Link to={`/blog/${item?.id}`}>
                   <div className="img-item">
                     <img
                       alt="course"
@@ -59,7 +59,6 @@ function Posts() {
                   <img
                     alt="author"
                     src={item?.author?.avt ? item?.author?.avt : logo}
-
                   />
                   <p>{item?.author?.username}</p>
                   <p>{formatterDate.format(Date.parse(item?.createdAt))}</p>

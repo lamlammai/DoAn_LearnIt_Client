@@ -11,7 +11,7 @@ function BlogItemTopic({ item }) {
   console.log(`item`, item);
   const [save, setSave] = useState([]);
   const [active, setActive] = useState(false);
-  const [, setCopied] = useState(false);
+  const [copie, setCopied] = useState(false);
   function copy() {
     const el = document.createElement("input");
     el.value = window.location.href;
@@ -55,17 +55,17 @@ function BlogItemTopic({ item }) {
             <span>{item?.author?.username}</span>
           </div>
           <div className="Blog-action">
-            <i
+            {/* <i
               className={
                 active ? "fas fa-bookmark bgColor" : "fas fa-bookmark "
               }
               onClick={() => Savepost(item?.id)}
-            ></i>
+            ></i> */}
             <i className="fas fa-ellipsis-h">
               <ul>
                 <li>
                   <a
-                    href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to&su=Tiêu đề &body=http://localhost:3000/learn/reactjs4"
+                    href={`https://mail.google.com/mail/u/0/?view=cm&fs=1&to&su=Bài viết hay &body=${window.location.href}`}
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -103,7 +103,7 @@ function BlogItemTopic({ item }) {
           <Link to={`/blog/${item?.id}`}>
             <div
               className="Blog-img"
-              style={{ backgroundImage: `url(${item?.img})` }}
+              style={{ backgroundImage: `url(${item?.image})` }}
             ></div>
           </Link>
         </div>

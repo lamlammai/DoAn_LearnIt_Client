@@ -80,11 +80,15 @@
                 font-weight: 400;
                 padding: 11px 10px;
                 border: none;
+                color: #5a5959;
                 font-family: "Montserrat", sans-serif;
                 transition: 0.3s ease;
                 &:hover {
                   color: rgb(247, 86, 22);
                   background-color: rgb(241, 241, 241);
+                }
+                a {
+                  color: inherit;
                 }
               }
             }

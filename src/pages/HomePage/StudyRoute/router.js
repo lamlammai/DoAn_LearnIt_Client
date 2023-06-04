@@ -4,6 +4,9 @@ import StudyRoute from "./StudyRoute";
 const DetailBeginer = lazy(() =>
   import("../../../features/DetailRoute/DetailBeginer")
 );
+const DetailOther = lazy(() =>
+  import("../../../features/DetailRoute/DetailOther")
+);
 const DetailFrontEnd = lazy(() =>
   import("../../../features/DetailRoute/DetailFrontEnd")
 );
@@ -32,6 +35,9 @@ function NestedRouter() {
         </Route>
         <Route exact path="/studyRoute/mobile-app">
           <DetailMobile />
+        </Route>
+        <Route exact path="/studyRoute/other">
+          <DetailOther />
         </Route>
       </Switch>
     </>

@@ -66,9 +66,9 @@ function HomePage() {
           <section>
             <Carousel />
             <div className="content-right-body">
-              <p>
+              {/* <p>
                 <strong>145.436+</strong> người khác cũng học
-              </p>
+              </p> */}
               {/* khóa đang học */}
               {Token ? (
                 <div className="SectionList-wrapper">
