@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Drawer, message } from "antd";
+import { Drawer, Skeleton, message } from "antd";
 import "../interact/interact.scss";
 import Comment from "../../component/interact/Comment";
 import ReactCmt from "../../component/interact/react";
@@ -38,8 +38,8 @@ const DrawerComment = (props) => {
       limit: 100,
     });
     if (res.statusCode === 200) {
-      setData(res.returnValue.data);
-      props.parentCallback(res.returnValue.data.data.length);
+      setData(res.returnValue?.data?.data);
+      props.parentCallback(res.returnValue?.data?.data.length);
     } else {
       message.error("Không thể đăng bình luận");
     }
@@ -67,7 +67,6 @@ const DrawerComment = (props) => {
       }
     } catch (error) {}
   };
-  useEffect(() => {}, []);
   const formatterDate = new Intl.DateTimeFormat("vi-VN", {
     year: "numeric",
     month: "2-digit",
@@ -80,70 +79,72 @@ const DrawerComment = (props) => {
   return (
     <>
       <i class="far fa-comment" onClick={showDrawer} />
-      <Drawer
-        width="720px"
-        placement="right"
-        onClose={onClose}
-        visible={visible}
-        closeIcon={<i class="fas fa-times"></i>}
-      >
-        <h3>{data?.data?.length >= 0 ? data?.data?.length : "0"} bình luận</h3>
-        <Comment text="Viết bình luận..." listComment={listComment} />
-        {data?.data?.map((item) => (
-          <div className="comment">
-            <div className="comment-item comment-text">
-              <img alt="ảnh avt" src={avt} />
-              <div className="comment-main">
-                <div className="comment-content">
-                  <h3 className="name">{item?.authorName}</h3>
-                  <span>{item?.content}</span>
-                  {active === item?.id ? (
-                    <div className="editCmt" hidden={hidden}>
-                      <input
-                        value={content}
-                        onChange={(e) => setContent(e.target.value)}
-                      ></input>
-                      <a onClick={() => handleEdit(item?.id, content)}>
-                        <i class="fas fa-paper-plane"></i>
-                      </a>
-                      {/* <button onClick={() => handleEdit(item?.id, content)}>
-Gửi
-</button> */}
+      {data && (
+        <Drawer
+          width="720px"
+          placement="right"
+          onClose={onClose}
+          visible={visible}
+          closeIcon={<i class="fas fa-times"></i>}
+        >
+          <h3>{data?.length >= 0 ? data?.length : "0"} bình luận</h3>
+          <Comment text="Viết bình luận..." listComment={listComment} />
+          <div>
+            {data &&
+              data?.map((item, index) => (
+                <div className="comment" key={index}>
+                  <div className="comment-item comment-text">
+                    <img alt="ảnh avt" src={avt} />
+                    <div className="comment-main">
+                      <div className="comment-content">
+                        <h3 className="name">{item?.authorName}</h3>
+                        <span>{item?.content}</span>
+                        {active === item?.id ? (
+                          <div className="editCmt" hidden={hidden}>
+                            <input
+                              value={content}
+                              onChange={(e) => setContent(e.target.value)}
+                            ></input>
+                            <p onClick={() => handleEdit(item?.id, content)}>
+                              <i class="fas fa-paper-plane"></i>
+                            </p>
+                          </div>
+                        ) : null}
+                      </div>
+                      <div className="comment-react">
+                        <ReactCmt parentCallback={ReactCMT} />
+                        <span onClick={handleClick}>Bình luận</span>
+                        <div className="total-react">
+                          <img src={like} alt="react" />
+                          <img src={haha} alt="react" />
+                          <span>{count}</span>
+                        </div>
+                        <span className="time">
+                          {formatterDate.format(Date.parse(item?.createdAt))}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  {item?.user?.id == user?.data?.id ? (
+                    <div className="active">
+                      <i className="fas fa-ellipsis-h">
+                        <ul>
+                          <li onClick={() => deleteComment(item?.id)}>Xóa</li>
+                          <li
+                            onClick={() => showEditCmt(item?.id, item?.content)}
+                            key={item?.id}
+                          >
+                            Sửa
+                          </li>
+                        </ul>
+                      </i>
                     </div>
                   ) : null}
                 </div>
-                <div className="comment-react">
-                  <ReactCmt parentCallback={ReactCMT} />
-                  <span onClick={handleClick}>Bình luận</span>
-                  <div className="total-react">
-                    <img src={like} alt="react" />
-                    <img src={haha} alt="react" />
-                    <span>{count}</span>
-                  </div>
-                  <span className="time">
-                    {formatterDate.format(Date.parse(item?.createdAt))}
-                  </span>
-                </div>
-              </div>
-            </div>
-            {item?.user?.id == user.data?.id ? (
-              <div className="active">
-                <i className="fas fa-ellipsis-h">
-                  <ul>
-                    <li onClick={() => deleteComment(item?.id)}>Xóa</li>
-                    <li
-                      onClick={() => showEditCmt(item?.id, item?.content)}
-                      key={item?.id}
-                    >
-                      Sửa
-                    </li>
-                  </ul>
-                </i>
-              </div>
-            ) : null}
+              ))}
           </div>
-        ))}
-      </Drawer>
+        </Drawer>
+      )}
     </>
   );
 };

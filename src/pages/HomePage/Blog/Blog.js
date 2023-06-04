@@ -39,9 +39,23 @@ export default function Blog() {
       console.log(error);
     }
   };
-
+  const listBlogPrefer = async () => {
+    if (Token) {
+      try {
+        const res = await sendGet("/posts/prefer");
+        if (res.statusCode === 200) {
+          setDataSuitable(res.returnValue?.data);
+        } else {
+          message.error("Có lỗi xảy ra");
+        }
+      } catch (error) {
+        message.error("Có lỗi xảy ra");
+      }
+    }
+  };
   useEffect(() => {
     listBlog();
+    listBlogPrefer();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (

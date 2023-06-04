@@ -17,7 +17,6 @@ function HeaderLayout(navClassList) {
   const [keyword, setKeyword] = useState("");
   const [course, setCourse] = useState([]);
   const [blog, setBlog] = useState([]);
-  const [video, setVideo] = useState([]);
   const { Search } = Input;
   function handleClick(lang) {
     i18n.changeLanguage(lang);
@@ -36,12 +35,15 @@ function HeaderLayout(navClassList) {
     setKeyword(e.target.value);
   }
   async function handleSearch() {
-    const res = await sendGet(`/api/search?key=${keyword}`);
-    if (res.status === 201) {
-      setCourse(res.data?.courses);
-      setBlog(res.data?.blogs);
-      setVideo(res.data?.videos);
-    } else message.error("Vui lòng load lại trang");
+    try {
+      const res = await sendGet(`/users/search?keyword=${keyword}`);
+      if (res.statusCode === 200) {
+        setCourse(res.returnValue?.data?.courses);
+        setBlog(res.returnValue?.data?.posts);
+      } else message.error("Vui lòng load lại trang");
+    } catch (error) {
+      message.error("Có lỗi xảy ra");
+    }
   }
 
   return (
@@ -140,7 +142,7 @@ function HeaderLayout(navClassList) {
             // enterButton
           />
           <div className="search-box" hidden={keyword === "" ? true : false}>
-            {blog.length === 0 && course.length === 0 && video.length === 0 ? (
+            {blog.length === 0 && course.length === 0 ? (
               <p>
                 <SearchOutlined /> Không có kết quả cho "{keyword}"
               </p>
@@ -160,7 +162,7 @@ function HeaderLayout(navClassList) {
                       <div className="search-result-main">
                         <img alt="course" src={i.img} />
                         <p>
-                          <Link to={`/course/${i._id}`}>{i.name}</Link>
+                          <Link to={`/course/${i.id}`}>{i.name}</Link>
                         </p>
                       </div>
                     ))}
@@ -177,29 +179,9 @@ function HeaderLayout(navClassList) {
                     </div>
                     {blog?.slice(0, 3)?.map((i) => (
                       <div className="search-result-main">
-                        <img alt="course" src={i.img} />
+                        <img alt="course" src={i.image} />
                         <p>
-                          <Link to={`/blog/${i._id}`}>{i.title}</Link>
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                ) : null}
-                {video.length !== 0 ? (
-                  <div className="search-result">
-                    <div className="search-result-title">
-                      <p className="title">VIDEOS</p>
-                      <Link to={`/search/${keyword}`}>
-                        <p className="btn-search">Xem thêm</p>
-                      </Link>
-                    </div>
-                    {video?.slice(0, 3)?.map((i) => (
-                      <div className="search-result-main">
-                        <img alt="course" src={i?.course?.img} />
-                        <p>
-                          <a href={i.link} target="_blank" rel="noreferrer">
-                            {i.name}
-                          </a>
+                          <Link to={`/blog/${i.id}`}>{i.title}</Link>
                         </p>
                       </div>
                     ))}

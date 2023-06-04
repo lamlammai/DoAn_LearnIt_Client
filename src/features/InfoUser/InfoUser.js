@@ -14,14 +14,14 @@ function Account() {
   const onFinish = async (values) => {
     values.avatar = await handleGetImage();
     try {
-      let res = await sendPut("/edit/infor", values);
+      let res = await sendPut("/users/profile", values);
       if (res.statusCode === 200) {
         window.location.reload();
       } else {
-        message.error("Cập nhật HDV thất bại");
+        message.error("Cập nhật user thất bại");
       }
     } catch (error) {
-      message.error("Cập nhật HDV thất bại");
+      message.error("Cập nhật user thất bại");
     }
   };
   const onFinishFailed = (errorInfo) => {
@@ -100,7 +100,7 @@ function Account() {
             <h2>Thông tin cá nhân</h2>
             <div className="info">
               <h3>Họ tên</h3>
-              <Form.Item name="name" initialValue={profile?.username}>
+              <Form.Item name="name" initialValue={profile?.name}>
                 <Input />
               </Form.Item>
               <p>

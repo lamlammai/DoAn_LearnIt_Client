@@ -19,7 +19,7 @@ function Comment({ listComment, text }) {
       };
       const res = await sendPost(`/comments`, data);
       if (res.statusCode === 200) {
-        listComment();
+        await listComment();
         setContent("");
       } else {
         message.error("Không thể đăng bình luận");

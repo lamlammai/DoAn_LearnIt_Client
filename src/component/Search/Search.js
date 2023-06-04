@@ -12,17 +12,18 @@ function Search() {
   const history = useHistory();
   const [course, setCourse] = useState([]);
   const [blog, setBlog] = useState([]);
-  const [video, setVideo] = useState([]);
   const [keyword, setKeyword] = useState(params.id);
   async function handleSearch(e) {
-    const res = await sendGet(`/api/search?key=${keyword}`);
-    if (res.status === 201) {
-      setCourse(res.data?.courses);
-      setBlog(res.data?.blogs);
-      setVideo(res.data?.videos);
-      history.push(`/search/${keyword}`);
-    } else message.error("Vui lòng load lại trang");
-    // setKeyword(e.target.value);
+    try {
+      const res = await sendGet(`/users/search?keyword=${keyword}`);
+      if (res.statusCode === 200) {
+        setCourse(res.returnValue?.data?.courses);
+        setBlog(res.returnValue?.data?.posts);
+        history.push(`/search/${keyword}`);
+      } else message.error("Có lỗi xảy ra");
+    } catch (error) {
+      // message.error("Có lỗi xảy ra");
+    }
   }
   function handleInputChange(e) {
     setKeyword(e.target.value);
@@ -61,11 +62,11 @@ function Search() {
                   <>
                     {course?.map((i) => (
                       <div className="search-item">
-                        <Link to={`/course/${i._id}`}>
+                        <Link to={`/course/${i.id}`}>
                           <img alt="course" src={i.img} />
                         </Link>
                         <p>
-                          <Link to={`/course/${i._id}`}>{i.name}</Link>
+                          <Link to={`/course/${i.id}`}>{i.name}</Link>
                         </p>
                       </div>
                     ))}
@@ -80,27 +81,9 @@ function Search() {
                     {" "}
                     {blog?.map((i) => (
                       <div className="search-item">
-                        <img alt="course" src={i.img} />
+                        <img alt="course" src={i.image} />
                         <p>
-                          <Link to={`/blog/${i._id}`}>{i.title}</Link>
-                        </p>
-                      </div>
-                    ))}
-                  </>
-                )}
-              </TabPane>
-              <TabPane tab="Video" key="3">
-                {video.length === 0 ? (
-                  <p> Không có kết quả phù hợp </p>
-                ) : (
-                  <>
-                    {video?.map((i) => (
-                      <div className="search-item">
-                        <img alt="course" src={i?.course?.img} />
-                        <p>
-                          <a href={i.link} target="_blank" rel="noreferrer">
-                            {i.name}
-                          </a>
+                          <Link to={`/blog/${i.id}`}>{i.title}</Link>
                         </p>
                       </div>
                     ))}

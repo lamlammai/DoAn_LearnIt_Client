@@ -99,8 +99,8 @@ function EditPost() {
     const add = await sendPut(`/posts/user`, data);
     // console.log(add);
     if (add.statusCode === 200) {
-      message.success("Update thành công");
-      history.push(`/blog/${params.link}`);
+      message.success("Bài viết đã gửi đến quản trị viên duyệt!");
+      history.push(`/blog`);
     } else {
       message.error("Lỗi kĩ thuật");
     }
