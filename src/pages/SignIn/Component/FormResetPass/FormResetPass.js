@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Input, Button, message } from "antd";
 
-import { sendPut } from "../../../../utils/api/index";
+import { sendPost, sendPut } from "../../../../utils/api/index";
 import { useHistory } from "react-router-dom";
 import "../../SignIn.scss";
 import "../FormSignin/FormSignin.scss";
@@ -14,11 +14,15 @@ function SignUp() {
   console.log(params);
   document.title = "Đổi mật khẩu";
   const onFinish = async (values) => {
-    const res = await sendPut(`/api/auth/forgot/${params.token}`, values);
-    if (res.status === 200) {
-      history.push("/Signin");
-      message.success("Đổi mật khẩu thành công");
-    } else {
+    try {
+      const res = await sendPost(`/auth/forgot-password`, values);
+      if (res.statusCode === 200) {
+        message.success("Đổi mật khẩu thành công");
+        history.push("/Signin");
+      } else {
+        message.error("Không thể truy cập");
+      }
+    } catch (error) {
       message.error("Không thể truy cập");
     }
   };
@@ -39,6 +43,25 @@ function SignUp() {
               onFinishFailed={onFinishFailed}
               autoComplete="off"
             >
+              <Form.Item
+                name="email"
+                label="Email"
+                rules={[
+                  {
+                    validateStatus: "error",
+                    type: "email",
+                    message: "Email không hợp lệ!",
+                  },
+                  {
+                    validateStatus: "error",
+                    required: true,
+                    message: "Email không được để trống!",
+                  },
+                ]}
+                hasFeedback
+              >
+                <Input />
+              </Form.Item>
               <Form.Item
                 name="password"
                 label="Mật khẩu mới"
@@ -74,7 +97,20 @@ function SignUp() {
               >
                 <Input.Password />
               </Form.Item>
-              <Button htmlType="submit">Đổi mật khẩu</Button>
+              <Form.Item
+                name="otp"
+                label="OTP"
+                hasFeedback
+                rules={[
+                  {
+                    required: true,
+                    message: "OTP không được để trống",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+              <Button htmlType="submit">Lưu mật khẩu</Button>
             </Form>
           </div>
           <div className="Modal-info">

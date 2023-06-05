@@ -26,7 +26,7 @@ export const ROUTES = {
   EXERCISE: "/exercise/:lessonid/:id",
   PAY: "/thanh-toan",
   FORGOT: "/forgotPassword",
-  RESETPASS: "/forgot-password/:token",
+  RESETPASS: "/doi-mat-khau",
   ACTIVE: "/active/:token",
   SEARCH: "/search/:id",
   ACTIVECOURSE: "/update-pay",

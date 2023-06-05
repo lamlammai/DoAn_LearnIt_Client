@@ -1,15 +1,20 @@
 import { Form, Input, Button, message } from "antd";
 import "../FormSignin/FormSignin.scss";
 import { sendPost } from "../../../../utils/api/index";
+import { useHistory } from "react-router-dom";
 
 export default function FormSignIn() {
+  const history = useHistory();
   const onFinish = async (values) => {
-
-    const res = await sendPost("/api/auth/forgot", values);
-    if (res.status === 200) {
-      // history.push("/api/auth/forgot/:token");
-      message.success("Mã xác nhận đã được gửi đến Email của bạn");
-    } else {
+    try {
+      const res = await sendPost("/auth/send-otp-forgot-password", values);
+      if (res.statusCode == 200) {
+        history.push("/doi-mat-khau");
+        message.success("Mã xác nhận đã được gửi đến Email của bạn");
+      } else {
+        message.error("Không thể truy cập 1");
+      }
+    } catch (error) {
       message.error("Không thể truy cập");
     }
   };

@@ -11,6 +11,8 @@ function Account() {
   const [profile, setProfile] = useState();
   const [show, setShow] = useState(true);
   const [form] = Form.useForm();
+  const [form1] = Form.useForm();
+
   const onFinish = async (values) => {
     values.avatar = await handleGetImage();
     try {
@@ -63,11 +65,15 @@ function Account() {
     }
   };
   const onChangePass = async (values) => {
-    const res = await sendPost("/api/user/password", values);
-    if (res.status === 200) {
-      message.success("Đổi mật khẩu thành công");
-      form.resetFields();
-    } else {
+    try {
+      const res = await sendPut("/auth/change-password", values);
+      if (res.statusCode === 200) {
+        message.success("Đổi mật khẩu thành công");
+        form1.resetFields();
+      } else {
+        message.error("Không thể đổi mật khẩu");
+      }
+    } catch (error) {
       message.error("Không thể đổi mật khẩu");
     }
   };
@@ -181,6 +187,7 @@ function Account() {
             onFinish={onChangePass}
             onFinishFailed={onCancelChangePass}
             autoComplete="off"
+            form={form1}
           >
             <Form.Item
               name="oldPassword"
@@ -196,7 +203,7 @@ function Account() {
               <Input.Password />
             </Form.Item>
             <Form.Item
-              name="password"
+              name="newPassword"
               label="Mật khẩu mới"
               rules={[
                 {
@@ -220,7 +227,7 @@ function Account() {
                 },
                 ({ getFieldValue }) => ({
                   validator(_, value) {
-                    if (!value || getFieldValue("password") === value) {
+                    if (!value || getFieldValue("newPassword") === value) {
                       return Promise.resolve();
                     }
                     return Promise.reject(new Error("Mật khẩu không khớp"));
