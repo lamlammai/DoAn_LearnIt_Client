@@ -1225,8 +1225,8 @@ video {
 .order-payment__info .button {
   width: 220px;
 }
-
-.button {
+.pay-wrapper .button,
+.pay__wrapper .button {
   background-color: #fff;
   border-radius: 8px 8px 8px 0;
   border: 1px solid transparent;
@@ -1258,9 +1258,9 @@ video {
 }
 
 .button--primary {
-  background-color: #ee0033;
-  color: #fff;
-  border-color: #ee0033;
+  background-color: #ee0033 !important;
+  color: #fff !important;
+  border-color: #ee0033 !important;
 }
 
 .button:before {
@@ -1339,7 +1339,7 @@ video {
   display: none;
 }
 
-.radio-custom1 input:checked~.checkmark:after {
+.radio-custom1 input:checked ~ .checkmark:after {
   display: block;
   background: #ee0033;
   width: 10px;
@@ -1614,7 +1614,7 @@ video {
   align-items: center;
   color: #ee0033;
   padding-right: 7px;
-  justify-content: flex-end
+  justify-content: flex-end;
 }
 
 .HistoryV2-des__title_group .HistoryV2-des__sub-price {

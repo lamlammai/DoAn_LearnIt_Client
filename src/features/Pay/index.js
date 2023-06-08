@@ -1,14 +1,13 @@
 /* eslint-disable eqeqeq */
 import React, { useEffect, useState } from "react";
 import { sendPost } from "../../utils/api";
+import { vnpay } from "../../constants/images";
 
 function Pay({ step, dataChild }) {
-  const [method, setMethod] = useState("momo");
+  const [method, setMethod] = useState("vnpay");
   // const orderId = new Date().getTime() + "";
   // console.log("orderId", orderId);
-  const [enpoint, setEndpoint] = useState(
-    "http://localhost/learning-online/api/atm-momo.php"
-  );
+  const [enpoint, setEndpoint] = useState("/users/deposit");
   const handleOnChange = (e) => {
     setMethod(e);
     if (e == "momo") {
@@ -60,7 +59,7 @@ function Pay({ step, dataChild }) {
                     </h4>
                     <div className="method-payment">
                       <ul className="method-payment__list">
-                        <li className="method-payment__item">
+                        {/* <li className="method-payment__item">
                           <div className="method-payment__left">
                             <span className="method-payment__icon">
                               <img
@@ -93,20 +92,15 @@ function Pay({ step, dataChild }) {
                                 </div>
                               </div>
                               <p className="method-payment__des">
-                                {/* <span>Chiết khấu 3%</span> */}
+                                <span>Chiết khấu 3%</span>
                               </p>
                             </div>
                           </div>
-                        </li>
+                        </li> */}
                         <li className="method-payment__item">
                           <div className="method-payment__left">
                             <span className="method-payment__icon">
-                              <img
-                                alt=""
-                                src="http://media.vietteltelecom.vn/upload//d2/8e/ed/9fe6190b351055d26fe82fae4769b63dba6407de.png"
-                                width="30"
-                                height="30"
-                              />
+                              <img alt="" src={vnpay} width="30" height="30" />
                             </span>
                             <div className="method-payment__detail">
                               <div className="method-payment__info">
